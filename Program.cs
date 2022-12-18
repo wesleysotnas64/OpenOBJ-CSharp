@@ -11,7 +11,9 @@ namespace OpenOBJ_CSharp
         {
             string pathFile = @"C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\files\esfera.obj";
             ObjectReader objReader = new ObjectReader(pathFile);
+            LoadedObject loadObj = new LoadedObject();
 
+            loadObj = objReader.BindReadingToAnObject();
         }
     }
 }

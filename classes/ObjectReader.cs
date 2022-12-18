@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OpenOBJ_CSharp.classes
 {
@@ -14,7 +10,18 @@ namespace OpenOBJ_CSharp.classes
         {
             string[] file = File.ReadAllLines(_pathObject);
             lines = RemoveDoubleSpaces(file);
-            ShowFaces(GetAllFaces(lines));
+        }
+
+        public LoadedObject BindReadingToAnObject()
+        {
+            LoadedObject lo = new LoadedObject
+            (
+                GetAllVertex(lines),
+                GetAllNormalVector(lines),
+                GetAllFaces(lines)
+            );
+
+            return lo;
         }
 
         private List<string> RemoveDoubleSpaces(string[] _s)
@@ -115,7 +122,6 @@ namespace OpenOBJ_CSharp.classes
             return _fArray;
         }
 
-        
         private void ShowVerticesOrNormalVectors(float[] _fA)
         {
             int br = 0;
