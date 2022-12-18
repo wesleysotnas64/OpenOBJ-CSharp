@@ -1,0 +1,15 @@
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\bin\Debug\net6.0\OpenOBJ-CSharp.exe
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\bin\Debug\net6.0\OpenOBJ-CSharp.deps.json
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\bin\Debug\net6.0\OpenOBJ-CSharp.runtimeconfig.json
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\bin\Debug\net6.0\OpenOBJ-CSharp.dll
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\bin\Debug\net6.0\OpenOBJ-CSharp.pdb
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.csproj.AssemblyReference.cache
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.AssemblyInfoInputs.cache
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.AssemblyInfo.cs
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.dll
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\refint\OpenOBJ-CSharp.dll
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.pdb
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\OpenOBJ-CSharp.genruntimeconfig.cache
+C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\obj\Debug\net6.0\ref\OpenOBJ-CSharp.dll
