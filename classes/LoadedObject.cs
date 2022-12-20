@@ -18,8 +18,8 @@ namespace OpenOBJ_CSharp.classes
             Vertices = _vertices;
             NormalVectors = _normalVectors;
             Faces = _faces;
-            InterpolateVertexAndNormalVector();
-            GenerateIndexFaces();
+            // InterpolateVertexAndNormalVector();
+            // GenerateIndexFaces();
         }
 
         public LoadedObject()

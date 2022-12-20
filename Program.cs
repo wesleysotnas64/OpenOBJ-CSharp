@@ -11,12 +11,13 @@ namespace OpenOBJ_CSharp
         {
             string pathFile = @"C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\files\cube.obj";
             ObjectReader objReader = new ObjectReader(pathFile);
-            objReader.ShowNormalVector();
+            // objReader.ShowNormalVector();
             LoadedObject loadObj = new LoadedObject();
 
             loadObj = objReader.BindReadingToAnObject();
+            // loadObj.ShowVertices();
+            loadObj.ShowNormalVector();
             // loadObj.ShowInterpolated();
-            // loadObj.ShowNormalVector();
             
 
             // string s = "1//2";
