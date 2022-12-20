@@ -16,9 +16,9 @@ namespace OpenOBJ_CSharp.classes
         {
             LoadedObject lo = new LoadedObject
             (
-                GetAllVertex(lines),
-                GetAllNormalVector(lines),
-                GetAllFaces(lines)
+                GetAllVertex(),
+                GetAllNormalVector(),
+                GetAllFaces()
             );
 
             return lo;
@@ -42,13 +42,13 @@ namespace OpenOBJ_CSharp.classes
             return trimStringList;
         }
 
-        private float[] GetAllVertex(List<string> _sL)
+        private float[] GetAllVertex()
         {
             float[] _vArray = new float[] {};
             string[] auxString;
             float auxFloat;
             
-            foreach(string line in _sL)
+            foreach(string line in this.lines)
             {
                 auxString = line.Split(" ");
                 if(auxString[0] == "v")
@@ -67,13 +67,13 @@ namespace OpenOBJ_CSharp.classes
             return _vArray;
         }
 
-        private float[] GetAllNormalVector(List<string> _sL)
+        private float[] GetAllNormalVector()
         {
             float[] _vnArray = new float[] {};
             string[] auxString;
             float auxFloat;
             
-            foreach(string line in _sL)
+            foreach(string line in this.lines)
             {
                 auxString = line.Split(" ");
                 if(auxString[0] == "vn")
@@ -92,13 +92,13 @@ namespace OpenOBJ_CSharp.classes
             return _vnArray;
         }
 
-        private int[] GetAllFaces(List<string> _sL)
+        private int[] GetAllFaces()
         {
             int[] _fArray = new int[] {};
             string[] auxString;
             int auxInt;
             
-            foreach(string line in _sL)
+            foreach(string line in this.lines)
             {
                 auxString = line.Split(" ");
                 if(auxString[0] == "f")
@@ -109,8 +109,15 @@ namespace OpenOBJ_CSharp.classes
                         string[] group = auxString[i].Split("/");
                         auxInt = Int32.Parse(group[0]);
                         _fArray = _fArray.Concat(new int[] { (auxInt-1) }).ToArray();
-                        auxInt = Int32.Parse(group[1]);
-                        _fArray = _fArray.Concat(new int[] { (auxInt-1) }).ToArray();
+                        if(group[1] != "")
+                        {
+                            auxInt = Int32.Parse(group[1]);
+                            _fArray = _fArray.Concat(new int[] { (auxInt-1) }).ToArray();
+                        }
+                        else
+                        {
+                            _fArray = _fArray.Concat(new int[] { 0 }).ToArray();
+                        }
                         auxInt = Int32.Parse(group[2]);
                         _fArray = _fArray.Concat(new int[] { (auxInt-1) }).ToArray();
                         i++;
@@ -122,8 +129,27 @@ namespace OpenOBJ_CSharp.classes
             return _fArray;
         }
 
-        private void ShowVerticesOrNormalVectors(float[] _fA)
+        public void ShowVertices()
         {
+            float[] _fA = GetAllVertex();
+            int br = 0;
+            for(int i = 0; i < _fA.Length; i++)
+            {
+                Console.Write("["+_fA[i]+"]");
+                br++;
+
+                if(br == 3)
+                {
+                    br = 0;
+                    Console.WriteLine("");
+                }
+            }
+        }
+        
+
+        public void ShowNormalVector()
+        {
+            float[] _fA = GetAllNormalVector();
             int br = 0;
             for(int i = 0; i < _fA.Length; i++)
             {
@@ -138,8 +164,9 @@ namespace OpenOBJ_CSharp.classes
             }
         }
 
-        private void ShowFaces(int[] _fA)
+        public void ShowFaces()
         {
+            int[] _fA = GetAllFaces();
             int br = 0;
             for(int i = 0; i < _fA.Length; i++)
             {
