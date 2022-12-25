@@ -9,23 +9,24 @@ namespace OpenOBJ_CSharp
     {
         public static void Main(string[] args)
         {
-            string pathFile = @"C:\Users\Vondal\Documents\MeusProjetos\OpenOBJ-CSharp\files\cube.obj";
-            ObjectReader objReader = new ObjectReader(pathFile);
+            // string pathFile = @"C:\AbsolutePath";
+            // ObjectReader objReader = new ObjectReader(pathFile);
+            // objReader.ShowVertices();
             // objReader.ShowNormalVector();
-            LoadedObject loadObj = new LoadedObject();
+            // objReader.ShowFaces();
 
-            loadObj = objReader.BindReadingToAnObject();
+            // LoadedObject loadObj = new LoadedObject
+            // (
+            //     objReader.GetAllVertex(),
+            //     objReader.GetAllNormalVector(),
+            //     objReader.GetAllFaces()
+            // );
+
             // loadObj.ShowVertices();
-            loadObj.ShowNormalVector();
+            // loadObj.ShowNormalVector();
+            // loadObj.ShowFaces();
             // loadObj.ShowInterpolated();
-            
-
-            // string s = "1//2";
-            // string[] v = s.Split("/");
-            // foreach(string i in v)
-            // {
-            //     Console.WriteLine(i);
-            // }
+            // loadObj.ShowIndexFaces();
         }
     }
 }

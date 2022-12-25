@@ -5,84 +5,82 @@ using System.Threading.Tasks;
 
 namespace OpenOBJ_CSharp.classes
 {
+
     public class LoadedObject
     {
-        private float[] vertices = new float[] {};
-        private float[] normalVectors = new float[] {};
-        private float[] verticesAndNormals = new float[] {};
-        private int[] faces = new int[] {};
-        private uint[] indexFaces = new uint[] {};
+        public float[] vertices = new float[] {};
+        public float[] normalVectors = new float[] {};
+        public float[] verticesAndNormalVectors = new float[] {};
+        public int[] faces = new int[] {};
+        public uint[] indexFaces = new uint[] {};
 
         public LoadedObject(float[] _vertices, float[] _normalVectors, int[] _faces)
         {
-            Vertices = _vertices;
-            NormalVectors = _normalVectors;
-            Faces = _faces;
-            // InterpolateVertexAndNormalVector();
-            // GenerateIndexFaces();
+            vertices = _vertices;
+            normalVectors = _normalVectors;
+            faces = _faces;
+            
+            InterpolateVertexAndNormalVector();
+            GenerateIndexFaces();
         }
 
-        public LoadedObject()
-        {
-            
-        }
 
         private void InterpolateVertexAndNormalVector()
         {
             int i = 0;
-            while(i < Faces.Length/9)
+            while(i < (faces.Length/9))
             {
                 int j = i*9;
-                //0 3 6  -  8
-                AddVertexToInterpolateOnIndex(Faces[j]);
-                AddNormalVectorToInterpolateOnIndex(Faces[j+2]);
+                //0 2  3 5  6 8
+                AddVertexToInterpolateOnIndex(faces[j]);
+                AddNormalVectorToInterpolateOnIndex(faces[j+2]);
 
-                AddVertexToInterpolateOnIndex(Faces[j+3]);
-                AddNormalVectorToInterpolateOnIndex(Faces[j+5]);
+                AddVertexToInterpolateOnIndex(faces[j+3]);
+                AddNormalVectorToInterpolateOnIndex(faces[j+5]);
 
-                AddVertexToInterpolateOnIndex(Faces[j+6]);
-                AddNormalVectorToInterpolateOnIndex(Faces[j+8]);
+                AddVertexToInterpolateOnIndex(faces[j+6]);
+                AddNormalVectorToInterpolateOnIndex(faces[j+8]);
 
-                i += 9;
+                i++;
             }
         }
 
         private void AddVertexToInterpolateOnIndex(int index)
         {
             index = index*3;
-            VerticesAndNormalVectors = VerticesAndNormalVectors.Concat(new float[] {Vertices[index]}).ToArray();
-            VerticesAndNormalVectors = VerticesAndNormalVectors.Concat(new float[] {Vertices[index+1]}).ToArray();
-            VerticesAndNormalVectors = VerticesAndNormalVectors.Concat(new float[] {Vertices[index+2]}).ToArray();
+            verticesAndNormalVectors = verticesAndNormalVectors.Concat(new float[] {vertices[index]}).ToArray();
+            verticesAndNormalVectors = verticesAndNormalVectors.Concat(new float[] {vertices[index+1]}).ToArray();
+            verticesAndNormalVectors = verticesAndNormalVectors.Concat(new float[] {vertices[index+2]}).ToArray();
         }
 
         private void AddNormalVectorToInterpolateOnIndex(int index)
         {
             index = index*3;
-            VerticesAndNormalVectors = VerticesAndNormalVectors.Concat(new float[] {NormalVectors[index]}).ToArray();
-            VerticesAndNormalVectors = VerticesAndNormalVectors.Concat(new float[] {NormalVectors[index+1]}).ToArray();
-            VerticesAndNormalVectors = VerticesAndNormalVectors.Concat(new float[] {NormalVectors[index+2]}).ToArray();
+            verticesAndNormalVectors = verticesAndNormalVectors.Concat(new float[] {normalVectors[index]}).ToArray();
+            verticesAndNormalVectors = verticesAndNormalVectors.Concat(new float[] {normalVectors[index+1]}).ToArray();
+            verticesAndNormalVectors = verticesAndNormalVectors.Concat(new float[] {normalVectors[index+2]}).ToArray();
         }
 
         private void GenerateIndexFaces()
         {
             int i = 0;
-            while(i < Faces.Length/9)
+            while(i < faces.Length/9)
             {
-                IndexFaces = IndexFaces.Concat(new uint[] {Convert.ToUInt32(Faces[i])}).ToArray();
-                IndexFaces = IndexFaces.Concat(new uint[] {Convert.ToUInt32(Faces[i+3])}).ToArray();
-                IndexFaces = IndexFaces.Concat(new uint[] {Convert.ToUInt32(Faces[i+6])}).ToArray();
-
-                i += 9;
+                int j = i*9;
+                indexFaces = indexFaces.Concat(new uint[] {Convert.ToUInt32(faces[j])}).ToArray();
+                indexFaces = indexFaces.Concat(new uint[] {Convert.ToUInt32(faces[j+3])}).ToArray();
+                indexFaces = indexFaces.Concat(new uint[] {Convert.ToUInt32(faces[j+6])}).ToArray();
+                i++;
             }
         }
 
         public void ShowVertices()
         {
-            float[] _fA = Vertices;
+            float[] _fA = this.vertices;
             int br = 0;
             for(int i = 0; i < _fA.Length; i++)
             {
-                Console.Write("["+_fA[i]+"]");
+                Console.Write("["+_fA.ElementAt(i)+"]");
                 br++;
 
                 if(br == 3)
@@ -95,7 +93,7 @@ namespace OpenOBJ_CSharp.classes
 
         public void ShowNormalVector()
         {
-            float[] _fA = NormalVectors;
+            float[] _fA = normalVectors;
             int br = 0;
             for(int i = 0; i < _fA.Length; i++)
             {
@@ -109,17 +107,37 @@ namespace OpenOBJ_CSharp.classes
                 }
             }
         }
+
+        public void ShowFaces()
+        {
+            int[] _fA = faces;
+            int br = 0;
+            for(int i = 0; i < _fA.Length; i++)
+            {
+                Console.Write("["+_fA[i]+"]");
+                br++;
+
+                if(br == 3 || br == 6)
+                    Console.Write(" ");
+                if(br == 9)
+                {
+                    br = 0;
+                    Console.WriteLine("");
+                }
+            }
+        }
         
         public void ShowInterpolated()
         {
+            float[] _fA = verticesAndNormalVectors;
             int br = 0;
-            for(int i = 0; i < VerticesAndNormalVectors.Length; i++)
+            for(int i = 0; i < _fA.Length; i++)
             {
-                Console.Write("["+VerticesAndNormalVectors[i]+"]");
+                Console.Write("["+_fA[i]+"]");
                 br++;
+
                 if(br == 3)
                     Console.Write(" ");
-
                 if(br == 6)
                 {
                     br = 0;
@@ -128,34 +146,32 @@ namespace OpenOBJ_CSharp.classes
             }
         }
 
-        public float[] Vertices
+        public void ShowIndexFaces()
         {
-            get{return this.vertices;}
-            set{this.vertices = value;}
-        }
+            uint[] _fA = indexFaces;
+            int br = 0;
+            for(int i = 0; i < _fA.Length; i++)
+            {
+                Console.Write("["+_fA[i]+"] ");
+                br++;
 
-        public float[] NormalVectors
-        {
-            get{return this.normalVectors;}
-            set{this.normalVectors = value;}
+                if(br == 3)
+                {
+                    br = 0;
+                    Console.WriteLine("");
+                }
+            }
         }
 
         public float[] VerticesAndNormalVectors
         {
-            get{return this.normalVectors;}
-            private set{this.normalVectors = value;}
-        }
-
-        public int[] Faces
-        {
-            get{return this.faces;}
-            set{this.faces = value;}
+            get{ return this.verticesAndNormalVectors;}
         }
 
         public uint[] IndexFaces
         {
-            get{return this.indexFaces;}
-            set{this.indexFaces = value;}
+            get{ return this.indexFaces;}
         }
     }
+   
 }

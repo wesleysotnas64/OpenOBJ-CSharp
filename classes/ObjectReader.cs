@@ -12,18 +12,6 @@ namespace OpenOBJ_CSharp.classes
             lines = RemoveDoubleSpaces(file);
         }
 
-        public LoadedObject BindReadingToAnObject()
-        {
-            LoadedObject lo = new LoadedObject
-            (
-                GetAllVertex(),
-                GetAllNormalVector(),
-                GetAllFaces()
-            );
-
-            return lo;
-        }
-
         private List<string> RemoveDoubleSpaces(string[] _s)
         {
             List<string> trimStringList = new List<string>();
@@ -42,7 +30,7 @@ namespace OpenOBJ_CSharp.classes
             return trimStringList;
         }
 
-        private float[] GetAllVertex()
+        public float[] GetAllVertex()
         {
             float[] _vArray = new float[] {};
             string[] auxString;
@@ -67,7 +55,7 @@ namespace OpenOBJ_CSharp.classes
             return _vArray;
         }
 
-        private float[] GetAllNormalVector()
+        public float[] GetAllNormalVector()
         {
             float[] _vnArray = new float[] {};
             string[] auxString;
@@ -86,13 +74,12 @@ namespace OpenOBJ_CSharp.classes
                         i++;
                     }
                 }
-
             }
 
             return _vnArray;
         }
 
-        private int[] GetAllFaces()
+        public int[] GetAllFaces()
         {
             int[] _fArray = new int[] {};
             string[] auxString;
@@ -123,7 +110,6 @@ namespace OpenOBJ_CSharp.classes
                         i++;
                     }
                 }
-
             }
 
             return _fArray;
@@ -146,7 +132,6 @@ namespace OpenOBJ_CSharp.classes
             }
         }
         
-
         public void ShowNormalVector()
         {
             float[] _fA = GetAllNormalVector();
