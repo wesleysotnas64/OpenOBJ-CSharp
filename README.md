@@ -39,6 +39,11 @@ Na tela inicial você irá se deparar com um cubo no centro da tela. É ele quem
 Se o mesmo, por algum acaso, não estiver na tela inicial, você pode criar um novo com o seguinte atalho:
 - **Shift+A**: Irá abrir uma pequena janela.
 - Então você irá navegar por: **Mash** > **Cube**
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/94082665/209472162-a5d0ec25-0163-4ddc-b14d-665f131ba896.png" widith="700px" />
+</div>
+
 Pronto! Objeto criado.
 <br>
 Continuando...
@@ -49,6 +54,14 @@ Siga o seguinte caminho:
 - **File** > **Export** > **Wavefront (.obj)**: Irá abrir uma janela de exportação.
 - Em **Geometry**, deixe marcado apenas: **Write Normals** e **Triangulate Faces**
 - Escolha o nome do arquivo e a pasta destino. Agora **Export OBJ**.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/94082665/209472181-ea67dd1e-083d-4219-b775-5a4a8a4619c6.png" widith="700px" />
+</div>
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/94082665/209472183-3ef02015-5e71-435a-b3d8-8a9e4109c9b6.png" widith="700px" />
+</div>
 
 ### Utilizando as Classes
 #### ObjectReader.cs
@@ -79,6 +92,10 @@ LoadedObject loadObj = new LoadedObject
 ~~~
 Ao ser instanciado ele interpola os vértices com os vetores normais. Ou seja, para cada vértice adicionado, será acompanhado do seu vetor normal. Da seguinte maneira:
 
+<div align="center">
+<img src="https://user-images.githubusercontent.com/94082665/209472789-788f69ef-effc-4dc2-aa06-5e72259171a7.png" widith="700px" />
+</div>
+
 ### Melhorando as Classes
 O código foi montado de maneira simples, então melhore e faça as modificações de acordo com as suas necessidades.
 <br>
@@ -87,3 +104,4 @@ Os métodos, tais como **ShowVertices()**, são para verificar se o arquivo carr
 ## Referências
 - Learn OpenTK: <https://opentk.net/learn/index.html>
 - Learn .NET: <https://dotnet.microsoft.com/en-us/learn> 
+- Blender: <https://www.blender.org/support/tutorials/>
