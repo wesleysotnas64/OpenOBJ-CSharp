@@ -33,16 +33,57 @@ Como o padrão estabelecido foi o mais utilizado pela **OpenGL**, ou seja, rende
 Em uma busca rápida pela internet você consegue encontrar diversos objetos **gratuitos** modelados em 3D, você pode baixa-los e importar no Blender. Mas nesta explicação vamos utilizar apenas o Blender para isso.
 <br><br>
 Abra o blender.
-<br><br>
+<br>
 Na tela inicial você irá se deparar com um cubo no centro da tela. É ele quem vamos utilizar para gerar o arquivo (.obj).
 <br><br>
 Se o mesmo, por algum acaso, não estiver na tela inicial, você pode criar um novo com o seguinte atalho:
-<br>
-- **Shift+A** - Irá abrir uma pequena janela.
-<br>
+- **Shift+A**: Irá abrir uma pequena janela.
 - Então você irá navegar por: **Mash** > **Cube**
-<br><br>
 Pronto! Objeto criado.
-<br><br>
+<br>
 Continuando...
+
+Agora precisamos triangular as faces do objeto, ou seja, por mais que o nosso objeto seja um cubo e tenha faces quadradas, precisamos subdividir as faces em triângulos, pois é assim que a **OpenGL** trabalha.
 <br><br>
+Siga o seguinte caminho:
+- **File** > **Export** > **Wavefront (.obj)**: Irá abrir uma janela de exportação.
+- Em **Geometry**, deixe marcado apenas: **Write Normals** e **Triangulate Faces**
+- Escolha o nome do arquivo e a pasta destino. Agora **Export OBJ**.
+
+### Utilizando as Classes
+#### ObjectReader.cs
+Ao instanciar um objeto **ObjectReader**, ele necessita do **caminho absoluto** do arquivo (.obj). Assim que ele é criado, já busca todas as linhas do arquivos que serão necessárias para a renderização do objeto (até o momento: vértices, vetores normais e faces).
+~~~C#
+string pathFile = @"C:\AbsolutePath";
+ObjectReader objReader = new ObjectReader(pathFile);
+// objReader.ShowVertices();
+// objReader.ShowNormalVector();
+// objReader.ShowFaces();
+~~~
+
+#### LoadedObject.cs
+O **LoadedObject** é o objeto em si que você vai utilizar nos códigos **OpenGL**. Para instancia-lo ele necessita do **ObjectReader**, pois retorna os componente necessários para a criação do objeto.
+~~~C#
+LoadedObject loadObj = new LoadedObject
+(
+    objReader.GetAllVertex(),
+    objReader.GetAllNormalVector(),
+    objReader.GetAllFaces()
+);
+
+// loadObj.ShowVertices();
+// loadObj.ShowNormalVector();
+// loadObj.ShowFaces();
+// loadObj.ShowInterpolated();
+// loadObj.ShowIndexFaces();
+~~~
+Ao ser instanciado ele interpola os vértices com os vetores normais. Ou seja, para cada vértice adicionado, será acompanhado do seu vetor normal. Da seguinte maneira:
+
+### Melhorando as Classes
+O código foi montado de maneira simples, então melhore e faça as modificações de acordo com as suas necessidades.
+<br>
+Os métodos, tais como **ShowVertices()**, são para verificar se o arquivo carregou como desejado, não necessariamente devem ser usadas.
+
+## Referências
+- Learn OpenTK: <https://opentk.net/learn/index.html>
+- Learn .NET: <https://dotnet.microsoft.com/en-us/learn> 
